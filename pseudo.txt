@@ -1,0 +1,86 @@
+1. An algorithm that asks a user to enter a positive number repeatedly until the user enters a zero value, then determines and outputs the largest of the numbers that were entered.
+
+max_val = None
+while True:
+    n = float(input("Enter a positive number (0 to stop): "))
+    if n == 0:
+        break
+    if max_val is None or n > max_val:
+        max_val = n
+
+if max_val is None:
+    print("No numbers were entered.")
+else:
+    print("Largest number entered:", max_val)
+
+2. An algorithm that requests a user to input their name and then stores their name in a variable called first_name. Subsequently, the algorithm should print out first_name along with the phrase “Hello, World”.
+
+first_name = input("Enter your first name: ")
+print("Hello, World, " + first_name)
+
+3. An algorithm that reads an arbitrary number of integers and then returns their arithmetic average.
+
+total = 0
+count = 0
+while True:
+    s = input("Enter an integer (blank to finish): ").strip()
+    if s == "":
+        break
+    total += int(s)
+    count += 1
+
+if count == 0:
+    print("No integers were entered.")
+else:
+    print("Average:", total / count)
+
+4. An algorithm that reads a grocery list and prints out the products (in alphabetical order) that are still left to buy.
+
+to_buy = []
+print("Enter items as: item, status  (status examples: bought / not bought). Blank line to finish.")
+while True:
+    line = input().strip()
+    if not line:
+        break
+    parts = [p.strip() for p in line.split(",", 1)]
+    item = parts[0]
+    status = parts[1].lower() if len(parts) > 1 else "not bought"
+    if status not in ("bought", "yes", "y", "true", "done"):
+        to_buy.append(item)
+
+to_buy.sort()
+print("Products left to buy:")
+for item in to_buy:
+    print(item)
+
+5. An algorithm for the fl owchart
+
+# Read two numbers, compute sum S, average A (S/2), and product P, then print results.
+
+def main():
+    try:
+        raw = input("Enter two numbers separated by space (or press Enter to input separately): ").strip()
+        if raw == "":
+            x = float(input("X: "))
+            y = float(input("Y: "))
+        else:
+            parts = raw.split()
+            if len(parts) == 1:
+                x = float(parts[0])
+                y = float(input("Y: "))
+            else:
+                x, y = map(float, parts[:2])
+    except ValueError:
+        print("Invalid input — please enter numeric values.")
+        return
+
+    S = x + y
+    A = S / 2
+    P = x * y
+
+    print(f"S = {S}")
+    print(f"A = {A}")
+    print(f"P = {P}")
+
+if __name__ == "__main__":
+    main()
